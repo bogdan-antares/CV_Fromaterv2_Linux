@@ -10,8 +10,6 @@ import subprocess
 import os
 import json
 import sys
-import win32api
-import win32con
 
 class CVFormaterApp(App):
     def build(self):
@@ -56,7 +54,7 @@ class CVFormaterApp(App):
         popup.open()
 
     def open_file_chooser(self, instance):
-        self.file_chooser = FileChooserIconView(filters=[self.is_hidden_or_system])
+        self.file_chooser = FileChooserIconView(filters=[self.is_hidden])
         self.save_button = Button(text='Sélectionner le répertoire', size_hint=(1, 0.1))
         self.save_button.bind(on_press=self.open_filename_dialog)
 
@@ -67,14 +65,8 @@ class CVFormaterApp(App):
         self.popup = Popup(title='Choisir le répertoire de sauvegarde', content=layout, size_hint=(0.9, 0.9))
         self.popup.open()
 
-    def is_hidden_or_system(self, filename, filetype):
-        try:
-            attributes = win32api.GetFileAttributes(filename)
-            if attributes & (win32con.FILE_ATTRIBUTE_HIDDEN | win32con.FILE_ATTRIBUTE_SYSTEM):
-                return False
-            return True
-        except Exception:
-            return False
+    def is_hidden(self, filename, filetype):
+        return not os.path.basename(filename).startswith('.')
 
     def open_filename_dialog(self, instance):
         self.selected_path = self.file_chooser.path
@@ -110,15 +102,11 @@ class CVFormaterApp(App):
             popup.open()
             return
 
-        # Sauvegarder le texte du CV dans un fichier
         try:
             with open('cv_text.txt', 'w', encoding='utf-8') as f:
                 f.write(cv_text)
-            # Réinitialiser la zone de texte après sauvegarde
             self.cv_text_input.text = ''
-            # Construire le chemin complet du fichier
             save_path = os.path.join(self.selected_path, f"{filename}.docx")
-            # Exécuter le script request.py
             self.run_web_script(save_path)
             self.filename_popup.dismiss()
         except Exception as e:
