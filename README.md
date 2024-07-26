@@ -1,6 +1,6 @@
 # CV_Formater
 
-Application permettant de formater des CV pour l'entreprise Antares. Cette version est conçue uniquement pour une utilisation sur Windows.
+Application permettant de formater des CV pour l'entreprise Antares. Cette version est conçue uniquement pour une utilisation sur Linux (Ubuntu).
 
 ## Mode d'emploi de l'installation de l'application :
 
@@ -17,21 +17,19 @@ Déroulement de l'installation :
 
 ### Étape 1 : Ouvrir l'invite de commande 
 
-Faire un clic droit sur l'icône Windows, puis cliquer sur "Windows PowerShell (admin)".
+Aller dans afficher les applications, puis lancer l'application 'Terminal'.
 
 ### Étape 2 :
 
 Entrer la commande suivante : elle installe Python !
 
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+sudo apt update
+sudo apt install python3
+sudo apt install python3-pip
 
-### Étape 3 : commande d'install / plus valide les phases 
+### Étape 3 : valide les phases 
 
-Fermer la page PowerShell et la rouvrir de la même manière que précédemment puis entrer la commande suivante :
-
-choco install python -y
-
-Une fois l'installation terminée, fermez et rouvrez PowerShell (Admin), puis entrez la commande suivante pour vérifier la bonne installation de Python :
+Une fois l'installation terminée, entrez la commande suivante pour vérifier la bonne installation de Python :
 
 python --version
 
@@ -39,9 +37,7 @@ python --version
 
 Entrer les commandes suivantes d'un coup, telle que présentés ci-dessous : 
 
-winget install Python.Python3 -y
 pip install numpy
-choco install git -y
 pip install kivy
 pip install python-docx
 pip install python-dateutil
@@ -50,17 +46,27 @@ pip install mistralai
 
 ### Étape 5 :
 
-Aller maintenant dans l'équipe Teams où se trouve le dossier CV_Formater, puis téléchargez-le. Ouvrez votre téléchargement, faites "Extraire" et choisissez le répertoire où vous voulez placer le dossier.
+Aller maintenant dans l'équipe Teams où se trouve le dossier CV_FormaterMistalAi_Linux, puis téléchargez-le. Ouvrez votre téléchargement, faites "Extraire" et choisissez le répertoire où vous voulez placer le dossier.
 
 ### Étape 6 :
 
-Dans le dossier, faites un clic droit sur le fichier _'cv_formater.bat'_ et sélectionnez _'Envoyer vers Bureau'_. Un raccourci sera alors créé et l'application sera utilisable en cliquant sur le raccourci.
+Pour lancer l'application, dans le terminal vous aller dans le répertoire ou vous avez extrait votre dossier. Imaginons que vous l'ayez extrait dans "Documents" alors entrer la commande suivante :
+
+cd home/<nom d'utilisteur de la session>/Documents/CV_Formater_Mistral_Linux
+
+Si vous ne connaisser pas le chemin pour accéder avotre fichier, entrer la commande suivante :
+
+find / -name "CV_Formater_Mistral_Linux" 2>/dev/null
+
+Puis entrer la commande suivante : 
+
+python3 main.py (ou encore : sudo python3 main.py)
 
 ---------------------------------------------------------------------------------
 
 ## Guide d'utilisation de l'application
 
-- Tout d'abord, coller votre clé API que vous avez créé précedemment dans l'espace dédier et cliquer sur "Sauvegarder la clé API"
+- Tout d'abord, coller votre clé API que vous avez créé précedemment dans l'espace dédier et cliquer sur "Sauvegarder la clé API" (Cliquer sur "Sauvegarder la clé API" à chaque fois que vous voulez formater un CV)
 - Maintenant récupérer le CV qu'on souhaite formater. Copier le contenu et le coller dans l'interface du programme CV_Formater. 
 - Choisissez ensuite le dossier où vous allez enregistrer le fichier ainsi que son nom (il n'est pas nécessaire de préciser l'extension, le fichier sera automatiquement un fichier .docx). 
 Attendez quelques secondes le temps de la génération du fichier, puis un message indiquera que le fichier a bien été généré et où il se trouve dans le répertoire de l'appareil. 
@@ -68,7 +74,8 @@ L'opération est répétable plusieurs fois.
 Attention au DC trop volumineaux, dans ce cas, il faut le faire en 2,3 voir 4 fois. Par exmeple un CV de 8 pages à minima en 2 fois, 12/14 pages, 3 fois ...
 Fin du processus : 
 - Le nom du profil + Titre ne sont pas mis à jour, il faut le faire manuellement. 
-- Attention tout de même aux dates notamment, il faut les vérifier au cas où il y ait des erreurs. 
+- Attention tout de même aux dates notamment, il faut les vérifier au cas où il y ait des erreurs.
+- Il se peut qu'il se trouve des erreurs, ce modèle n'est qu'une première version, toute récente et donc est loin d'être parfaite.
 
 
 ## Comment cette application a été mise en œuvre
