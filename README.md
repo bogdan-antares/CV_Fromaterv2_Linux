@@ -46,7 +46,7 @@ pip install mistralai
 
 ### Étape 5 :
 
-Aller maintenant dans l'équipe Teams où se trouve le dossier CV_FormaterMistalAi_Linux, puis téléchargez-le. Ouvrez votre téléchargement, faites "Extraire" et choisissez le répertoire où vous voulez placer le dossier.
+Aller maintenant dans l'équipe Teams où se trouve le dossier CV_FormaterMistal_Linux, puis téléchargez-le. Ouvrez votre téléchargement, faites "Extraire" et choisissez le répertoire où vous voulez placer le dossier.
 
 ### Étape 6 :
 
